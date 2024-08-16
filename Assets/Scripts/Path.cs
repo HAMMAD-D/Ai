@@ -6,7 +6,7 @@ public class Path : MonoBehaviour
     public Color lineColor;
     public List<Transform> nodes = new List<Transform>();
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = lineColor;
         Transform[] pathTransform = GetComponentsInChildren<Transform>();

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class CarEngine : MonoBehaviour
     private List<Transform> nodes;
     private int currentNode = 0;
     private float maxSteerAngle = 45.0f;
-    public float maxMotorTorque = 150f;
+    public float maxMotorTorque = 500f;
     public float maxSpeed = 20f;
     public float nodeReachThreshold = 3f;
     private Rigidbody carRb;
@@ -15,6 +16,8 @@ public class CarEngine : MonoBehaviour
     public WheelCollider FR;
     public WheelCollider RL;
     public WheelCollider RR;
+    public float sensorLength = 5f;
+    public float frontSensorPosition = 0.5f;
 
     void Start()
     {
@@ -38,6 +41,7 @@ public class CarEngine : MonoBehaviour
         CheckNodeDistance();
     }
 
+
     void ApplySteering()
     {
         Vector3 relativeVector = transform.InverseTransformPoint(nodes[currentNode].position);
@@ -53,11 +57,15 @@ public class CarEngine : MonoBehaviour
         {
             RL.motorTorque = maxMotorTorque;
             RR.motorTorque = maxMotorTorque;
+            Fl.motorTorque = maxMotorTorque;
+            FR.motorTorque = maxMotorTorque;
         }
         else
         {
             RL.motorTorque = 0f;
             RR.motorTorque = 0f;
+            FR.motorTorque = 0f;
+            Fl.motorTorque = 0f;
         }
     }
 

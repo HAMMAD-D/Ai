@@ -11,11 +11,5 @@ public class CarWheel : MonoBehaviour
         targetWheel.GetWorldPose(out wheelPosition, out wheelRotation);
         transform.position = wheelPosition;
         transform.rotation = wheelRotation;
-        AddMotor();
-    }
-
-    void AddMotor()
-    {
-        targetWheel.motorTorque = 100f;
     }
 }
